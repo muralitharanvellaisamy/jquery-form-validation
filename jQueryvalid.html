@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jquery form validation</title>
+		<style>
+			div{padding:10px;}
+		</style>
+	</head>
+	<body>
+
+<form id="jQuery-valid" name="jQuery-valid" method="post" action="#">
+	<div>
+		username : <input type="text" class="text" name="username" id="username" />
+	</div>
+	<div>
+		password : <input type="text" class="text" name="password" id="password" />
+	</div>
+	<div>
+		email : <input type="text" class="text" name="email" id="email" />
+	</div>	
+	<div>
+		firstname : <input type="text" class="text" name="firstname" id="firstname" />
+	</div>	
+	<div>
+		lastname : <input type="text" class="text" name="lastname" id="lastname" />
+	</div>	
+	<div>
+		Address : <input type="text" class="text" name="address" id="address" />
+	</div>
+	<div>
+		city : <input type="text" class="text" name="city" id="city" />
+	</div>
+	<div>
+		state : <input type="text" class="text" name="state" id="state" />
+	</div>	
+	<div>
+		phone : <input type="text" class="text" name="phone" id="phone" />
+	</div>
+	<div>
+		postalcode : <input type="text" class="text" name="postalcode" id="postalcode" />
+	</div>	
+
+    <input type="button" id="submit" value="Submit" name="submit" />
+</form>
+
+	</body>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	
+	function ValidateEmail(email) {
+        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+	function ValidateAlphanumeric(alphanumeric) {
+        var expr = /^([a-zA-Z0-9]+)$/;
+        return expr.test(alphanumeric);
+    };
+	function ValidateNumeric(numeric) {
+        var expr = /^[0-9]{1,10}$/;
+        return expr.test(numeric);
+    };	
+	function ValidateAlphabats(alphabats) {
+        var expr = /^[a-zA-Z ]*$/;
+        return expr.test(alphabats);
+    };	
+	
+		
+    var $form = $("#jQuery-valid"),
+    $nameMsg = $("<span class='error'>Enter Your Name..!!</span>");
+	var alNumRegex = /^([a-zA-Z0-9]+)$/; //only letters and numbers
+
+    $("#submit").on("click", function () {
+        var toReturn = true;
+		// username validation
+        $("input", $form).each(function () {
+            if ($('#username').val() == "" || !ValidateAlphanumeric($("#username").val())) {
+                if (!$('#username').data("error")) {
+                    $('#username').data("error", $nameMsg.clone().insertAfter($('#username')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#username').data("error")) {
+                    $('#username').data("error").remove();
+                    $('#username').removeData("error");
+                }
+            }
+        });
+		//password validation
+		$passwordMsg = $("<span class='error'>Enter your Password..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#password').val() == "") {
+                if (!$('#password').data("error")) {
+                    $('#password').data("error", $passwordMsg.clone().insertAfter($('#password')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#password').data("error")) {
+                    $('#password').data("error").remove();
+                    $('#password').removeData("error");
+                }
+            }
+        });
+		//email validation
+		
+
+		
+		$emailMsg = $("<span class='error'>Enter your Email..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#email').val() == "" || !ValidateEmail($("#email").val())) {
+                if (!$('#email').data("error")) {
+                    $('#email').data("error", $emailMsg.clone().insertAfter($('#email')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#email').data("error")) {
+                    $('#email').data("error").remove();
+                    $('#email').removeData("error");
+                }
+            }
+        });		
+		//firstname validation
+		$firstnameMsg = $("<span class='error'>Enter your firstname..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#firstname').val() == "" || !ValidateAlphabats($("#firstname").val())) {
+                if (!$('#firstname').data("error")) {
+                    $('#firstname').data("error", $firstnameMsg.clone().insertAfter($('#firstname')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#firstname').data("error")) {
+                    $('#firstname').data("error").remove();
+                    $('#firstname').removeData("error");
+                }
+            }
+        });		
+		//lastname validation
+		$lastnameMsg = $("<span class='error'>Enter your lastname..!!/span>");
+		$("input", $form).each(function () {
+            if ($('#lastname').val() == "" || !ValidateAlphabats($("#lastname").val())) {
+                if (!$('#lastname').data("error")) {
+                    $('#lastname').data("error", $lastnameMsg.clone().insertAfter($('#lastname')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#lastname').data("error")) {
+                    $('#lastname').data("error").remove();
+                    $('#lastname').removeData("error");
+                }
+            }
+        });			
+		
+		//address validation
+		$addressMsg = $("<span class='error'>Enter your lastname..!!/span>");
+		$("input", $form).each(function () {
+            if ($('#address').val() == "") {
+                if (!$('#address').data("error")) {
+                    $('#address').data("error", $addressMsg.clone().insertAfter($('#address')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#address').data("error")) {
+                    $('#address').data("error").remove();
+                    $('#address').removeData("error");
+                }
+            }
+        });	
+
+		//city validation
+		$cityMsg = $("<span class='error'>Enter your city..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#city').val() == "" || !ValidateAlphabats($("#city").val())) {
+                if (!$('#city').data("error")) {
+                    $('#city').data("error", $cityMsg.clone().insertAfter($('#city')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#city').data("error")) {
+                    $('#city').data("error").remove();
+                    $('#city').removeData("error");
+                }
+            }
+        });		
+	
+		//state validation
+		
+		$stateMsg = $("<span class='error'>Enter your state..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#state').val() == "" || !ValidateAlphabats($("#state").val())) {
+                if (!$('#state').data("error")) {
+                    $('#state').data("error", $cityMsg.clone().insertAfter($('#state')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#state').data("error")) {
+                    $('#state').data("error").remove();
+                    $('#state').removeData("error");
+                }
+            }
+        });			
+		
+		//postalcode validation	
+
+		$postalcodeMsg = $("<span class='error'>Enter your postalcode..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#postalcode').val() == "" || !ValidateAlphanumeric($("#postalcode").val())) {
+                if (!$('#postalcode').data("error")) {
+                    $('#postalcode').data("error", $cityMsg.clone().insertAfter($('#postalcode')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#postalcode').data("error")) {
+                    $('#postalcode').data("error").remove();
+                    $('#postalcode').removeData("error");
+                }
+            }
+        });		
+		//phone validation		
+
+		$phoneMsg = $("<span class='error'>Enter your phone..!!</span>");
+		$("input", $form).each(function () {
+            if ($('#phone').val() == "" || !ValidateNumeric($("#phone").val())) {
+                if (!$('#phone').data("error")) {
+                    $('#phone').data("error", $phoneMsg.clone().insertAfter($('#phone')));
+                }
+                toReturn = false;
+            }
+            else {
+                if ($('#phone').data("error")) {
+                    $('#phone').data("error").remove();
+                    $('#phone').removeData("error");
+                }
+            }
+        });		
+		
+
+        return toReturn;
+    });	
+		
+		
+	
+	</script>
+</html>
